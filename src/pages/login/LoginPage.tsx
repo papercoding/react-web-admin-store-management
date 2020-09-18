@@ -1,63 +1,73 @@
 import React from 'react';
+import Button from '../../components/Button/Button';
+import { Form, Input, Typography } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
 
 import './LoginPage.scss';
 
 const LoginPage = () => {
+  const { Title } = Typography;
+  const onFinish = (values: any) => {
+    console.log('Received values of form: ', values);
+  };
+
   return (
-    <div className='Login'>
-      <div className='w-full max-w-xs'>
-        <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-          <div className='mb-4'>
-            <label
-              className='block text-gray-700 text-sm font-bold mb-2'
-              htmlFor='username'
-            >
-              Username
-            </label>
-            <input
-              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              id='username'
-              type='text'
-              placeholder='Username'
-            />
-          </div>
-          <div className='mb-6'>
-            <label
-              className='block text-gray-700 text-sm font-bold mb-2'
-              htmlFor='password'
-            >
-              Password
-            </label>
-            <input
-              className='shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
-              id='password'
-              type='password'
-              placeholder='******************'
-            />
-            <p className='text-red-500 text-xs italic'>
-              Please choose a password.
-            </p>
-          </div>
-          <div className='flex items-center justify-between'>
-            <button
-              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-              type='button'
-            >
-              Sign In
-            </button>
-            <a
-              className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
-              href='#a'
-            >
-              Forgot Password?
-            </a>
-          </div>
-        </form>
-        <p className='text-center text-gray-500 text-xs'>
-          ©2020 Acme Corp. All rights reserved.
-        </p>
-      </div>
-    </div>
+    <Form
+      name='normal_login'
+      className='login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto'
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+    >
+      <Title level={2}>Sign in</Title>
+      <Form.Item
+        name='username'
+        rules={[
+          {
+            required: true,
+            message: 'Please input your Email!',
+          },
+        ]}
+      >
+        <Input
+          prefix={<UserOutlined className='site-form-item-icon' />}
+          placeholder='Email'
+          bordered={false}
+          className='inputField emailInput'
+        />
+      </Form.Item>
+      <Form.Item
+        name='password'
+        rules={[
+          {
+            required: true,
+            message: 'Please input your Password!',
+          },
+        ]}
+      >
+        <Input
+          prefix={<LockOutlined className='site-form-item-icon' />}
+          type='password'
+          placeholder='Password'
+          bordered={false}
+          className='inputField passwordInput'
+        />
+      </Form.Item>
+      <Form.Item>
+        <a className='login-form-forgot' href='#forgot'>
+          Forgot password
+        </a>
+      </Form.Item>
+
+      <Form.Item>
+        <div className='btnLogin'>
+          <Button type='submit' btnName='Signin' />
+        </div>
+        Or <a href='register'>register now!</a>
+      </Form.Item>
+    </Form>
   );
 };
 

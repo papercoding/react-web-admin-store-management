@@ -1,7 +1,13 @@
 import React from 'react';
-
-const Button = () => {
-  return <div>Button</div>;
+import { Button } from 'antd';
+const ButtonComponent = ({ btnName, type }: { btnName: string; type: any }) => {
+  return (
+    <div>
+      <Button block type={type} htmlType='submit'>
+        {btnName}
+      </Button>
+    </div>
+  );
 };
 
-export default Button;
+export default ButtonComponent;
