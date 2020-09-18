@@ -71,7 +71,13 @@ const LoginPage = () => {
         </Form.Item>
       </Form>
       <div className='mt-5'>
-        Or <Link to={`/signup`}>Register</Link>
+        <Title level={5} type='secondary'>
+          Not a member
+        </Title>
+
+        <Title level={5} className='signupLink'>
+          <Link to={`/signup`}>Sign up</Link>
+        </Title>
       </div>
     </div>
   );
