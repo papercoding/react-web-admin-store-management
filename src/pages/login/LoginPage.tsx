@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -8,11 +8,24 @@ import Button from '../../components/Button/Button';
 
 import './LoginPage.scss';
 
+type FieldStates = {
+  email: string;
+  password: string;
+};
+
 const LoginPage = () => {
   const { Title } = Typography;
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // e.preventDefault();
+    const { email, password } = fields;
+
+    console.log(`Email: ${email} and password: ${password}`);
   };
+
+  const [fields, setFields] = useState<FieldStates>({
+    email: '',
+    password: '',
+  });
 
   return (
     <div>
@@ -22,7 +35,7 @@ const LoginPage = () => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
+        onFinish={handleSubmit}
       >
         <Title level={2}>Sign in</Title>
         <Form.Item
@@ -39,6 +52,10 @@ const LoginPage = () => {
             placeholder='Email'
             bordered={false}
             className='inputField emailInput'
+            onChange={(e) => {
+              const email = e.target.value;
+              setFields((prevState) => ({ ...prevState, email }));
+            }}
           />
         </Form.Item>
         <Form.Item
@@ -56,6 +73,10 @@ const LoginPage = () => {
             placeholder='Password'
             bordered={false}
             className='inputField passwordInput'
+            onChange={(e) => {
+              const password = e.target.value;
+              setFields((prevState) => ({ ...prevState, password }));
+            }}
           />
         </Form.Item>
         <Form.Item>
