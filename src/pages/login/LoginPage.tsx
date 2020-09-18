@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '../../components/Button/Button';
+import { Link } from 'react-router-dom';
 import { Form, Input, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-
 import 'antd/dist/antd.css';
+
+import Button from '../../components/Button/Button';
 
 import './LoginPage.scss';
 

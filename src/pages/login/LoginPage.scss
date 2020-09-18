@@ -1,23 +1,26 @@
+// @import '../../styles/styles';
+@import '../../styles/variables';
+
 .login-form {
-  max-width: 400px;
-  margin-top: 100px;
+    max-width: 400px;
+    margin-top: 100px;
 
-  .inputField {
-    border-bottom: 1px solid #ccc;
-  }
+    .inputField {
+        border-bottom: 1px solid $gray;
+    }
 
-  .btnLogin Button {
-    background-color: #42a5f5;
-    font-weight: bold;
-    color: #fff;
-  }
+    .btnLogin Button {
+        background-color: $blue;
+        font-weight: bold;
+        color: $white;
+    }
 
-  .login-form-forgot {
-    color: #42a5f5;
-    float: right;
-  }
+    .login-form-forgot {
+        color: $blue;
+        float: right;
+    }
 }
 
 .signupLink {
-  color: #40a9ff;
+    color: $blue;
 }
