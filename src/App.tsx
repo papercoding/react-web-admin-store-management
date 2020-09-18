@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.module.scss';
+import './App.scss';
 import LoginPage from './pages/login/LoginPage';
 import './styles/tailwind.output.css';
 
