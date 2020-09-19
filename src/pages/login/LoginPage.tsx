@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { Form, Input, Typography } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Form, Input, Typography } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-import Button from "../../components/Button/Button";
+import Button from '../../components/Button/Button';
 
-import "./LoginPage.scss";
+import './LoginPage.scss';
 
 type FieldStates = {
   email: string;
@@ -35,15 +35,15 @@ const LoginPage = () => {
   const handleChange = () => {};
 
   const [fields, setFields] = useState<FieldStates>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   return (
     <div>
       <Form
-        name="normal_login"
-        className="login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto mt-20"
+        name='normal_login'
+        className='login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto mt-20'
         initialValues={{
           remember: true,
         }}
@@ -51,63 +51,63 @@ const LoginPage = () => {
       >
         <Title level={2}>Sign in</Title>
         <Form.Item
-          name="username"
+          name='username'
           rules={[
             {
               required: true,
-              message: "Please input your Email!",
+              message: 'Please input your Email!',
             },
           ]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
+            prefix={<UserOutlined className='site-form-item-icon' />}
+            placeholder='Email'
             bordered={false}
-            className="inputField emailInput"
+            className='inputField emailInput'
             onChange={handleChangeEmail}
           />
         </Form.Item>
         <Form.Item
-          name="password"
+          name='password'
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: 'Please input your Password!',
             },
           ]}
         >
           <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
+            prefix={<LockOutlined className='site-form-item-icon' />}
+            type='password'
+            placeholder='Password'
             bordered={false}
-            className="inputField passwordInput"
+            className='inputField passwordInput'
             onChange={handleChangePassword}
           />
         </Form.Item>
         <Form.Item>
-          <a className="login-form-forgot" href="#forgot">
+          <a className='login-form-forgot' href='#forgot'>
             Forgot password
           </a>
         </Form.Item>
 
         <Form.Item>
-          <div className="btnLogin">
+          <div className='btnLogin'>
             <Button
-              label="Signin"
-              htmlType="submit"
-              type="default" // what does type do here ???
+              label='Signin'
+              htmlType='submit'
+              type='default' // what does type do here ???
               onChange={handleChange}
             />
           </div>
         </Form.Item>
       </Form>
-      <div className="mt-5">
-        <Title level={5} type="secondary">
+      <div className='mt-5'>
+        <Title level={5} type='secondary'>
           Not a member
         </Title>
 
-        <Title level={5} className="signupLink">
+        <Title level={5} className='signupLink'>
           <Link to={`/signup`}>Sign up</Link>
         </Title>
       </div>
