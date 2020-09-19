@@ -1,0 +1,36 @@
+// @import '../../styles/styles';
+@import '../../styles/variables';
+
+.login-form {
+    max-width: 400px;
+    margin-top: 100px;
+
+    .ant-form-item-control-input-content .inputField {
+        border-bottom: 1px solid $gray;
+    }
+
+    // .inputField {
+    //     border-bottom: 1px solid $gray;
+    // }
+
+    .btnLogin Button {
+        background-color: $blue;
+        font-weight: bold;
+        color: $white;
+    }
+
+    .login-form-forgot {
+        color: $blue;
+        float: right;
+    }
+
+    // fix position error text
+    .ant-form-item-explain div {
+        position: absolute;
+        top: 34px;
+    }
+}
+
+.signupLink {
+    color: $blue;
+}

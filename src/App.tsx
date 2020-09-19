@@ -1,26 +1,26 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import "./styles/tailwind.output.css";
-import "./i18n/i18n";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+import { ROUTES } from './utils/constants';
+import LoginPage from './pages/login/LoginPage';
+import SignUpPage from './pages/signup/RegisterPage';
+import ErrorPage from './pages/error/ErrorPage';
+import ForgotPassword from './pages/forgotPassword/ForgotPassword';
+
+import 'antd/dist/antd.css';
+import './styles/tailwind.output.css';
+import './App.scss';
+import './i18n/i18n';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Switch>
+        <Route exact path={ROUTES.LOGIN} component={LoginPage} />
+        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPassword} />
+        <Route component={ErrorPage} />
+      </Switch>
     </div>
   );
 }
