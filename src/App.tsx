@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "./styles/tailwind.output.css";
+import "./i18n/i18n";
 
 function App() {
   return (
