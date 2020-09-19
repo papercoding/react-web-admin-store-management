@@ -5,6 +5,7 @@ import { Form, Input, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import Button from '../../components/Button/Button';
+import { ROUTES } from '../../utils/constants';
 
 import './LoginPage.scss';
 
@@ -86,9 +87,9 @@ const LoginPage = () => {
           />
         </Form.Item>
         <Form.Item>
-          <a className='login-form-forgot' href='#forgot'>
-            Forgot password
-          </a>
+          <Title level={5} className='login-form-forgot'>
+            <Link to={ROUTES.FORGOT_PASSWORD}>Forgot password</Link>
+          </Title>
         </Form.Item>
 
         <Form.Item>
@@ -108,7 +109,7 @@ const LoginPage = () => {
         </Title>
 
         <Title level={5} className='signupLink'>
-          <Link to={`/signup`}>Sign up</Link>
+          <Link to={ROUTES.SIGN_UP}>Sign up</Link>
         </Title>
       </div>
     </div>

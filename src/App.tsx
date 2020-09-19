@@ -5,6 +5,7 @@ import { ROUTES } from './utils/constants';
 import LoginPage from './pages/login/LoginPage';
 import SignUpPage from './pages/signup/RegisterPage';
 import ErrorPage from './pages/error/ErrorPage';
+import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 
 import 'antd/dist/antd.css';
 import './styles/tailwind.output.css';
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <Route exact path={ROUTES.LOGIN} component={LoginPage} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPassword} />
         <Route component={ErrorPage} />
       </Switch>
     </div>
