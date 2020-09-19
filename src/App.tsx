@@ -10,6 +10,7 @@ import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import 'antd/dist/antd.css';
 import './styles/tailwind.output.css';
 import './App.scss';
+import './i18n/i18n';
 
 function App() {
   return (
