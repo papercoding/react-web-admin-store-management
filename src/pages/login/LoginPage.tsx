@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { Form, Input, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
 
 import Button from '../../components/Button/Button';
 
+import 'antd/dist/antd.css';
 import './LoginPage.scss';
 
 type FieldStates = {
@@ -16,11 +17,23 @@ type FieldStates = {
 const LoginPage = () => {
   const { Title } = Typography;
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // e.preventDefault();
+    if (e.preventDefault) e.preventDefault();
     const { email, password } = fields;
 
     console.log(`Email: ${email} and password: ${password}`);
   };
+
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const email = event.currentTarget.value;
+    setFields((prevState) => ({ ...prevState, email }));
+  };
+
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const password = event.currentTarget.value;
+    setFields((prevState) => ({ ...prevState, password }));
+  };
+
+  const handleChange = () => {};
 
   const [fields, setFields] = useState<FieldStates>({
     email: '',
@@ -52,10 +65,7 @@ const LoginPage = () => {
             placeholder='Email'
             bordered={false}
             className='inputField emailInput'
-            onChange={(e) => {
-              const email = e.target.value;
-              setFields((prevState) => ({ ...prevState, email }));
-            }}
+            onChange={handleChangeEmail}
           />
         </Form.Item>
         <Form.Item
@@ -73,10 +83,7 @@ const LoginPage = () => {
             placeholder='Password'
             bordered={false}
             className='inputField passwordInput'
-            onChange={(e) => {
-              const password = e.target.value;
-              setFields((prevState) => ({ ...prevState, password }));
-            }}
+            onChange={handleChangePassword}
           />
         </Form.Item>
         <Form.Item>
@@ -87,7 +94,12 @@ const LoginPage = () => {
 
         <Form.Item>
           <div className='btnLogin'>
-            <Button type='submit' btnName='Signin' />
+            <Button
+              btnName='Signin'
+              htmlType='submit'
+              type='default' // what does type do here ???
+              onChange={handleChange}
+            />
           </div>
         </Form.Item>
       </Form>
