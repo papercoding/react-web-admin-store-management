@@ -44,7 +44,7 @@ const LoginPage = () => {
     <div>
       <Form
         name='normal_login'
-        className='login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto mt-20'
+        className='login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto'
         initialValues={{
           remember: true,
         }}
@@ -95,7 +95,7 @@ const LoginPage = () => {
         <Form.Item>
           <div className='btnLogin'>
             <Button
-              label='Signin'
+              label='Sign in'
               htmlType='submit'
               type='default' // what does type do here ???
               onChange={handleChange}
