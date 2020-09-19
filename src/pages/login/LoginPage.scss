@@ -19,6 +19,12 @@
         color: $blue;
         float: right;
     }
+
+    // fix position error text
+    .ant-form-item-explain div {
+        position: absolute;
+        top: 34px;
+    }
 }
 
 .signupLink {
