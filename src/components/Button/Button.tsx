@@ -1,30 +1,28 @@
-import React from 'react';
-import { Button } from 'antd';
-const ButtonComponent = ({
-  btnName,
-  type,
-  onChange,
-  htmlType,
-}: {
-  btnName: string;
+import React from "react";
+import { Button as AntButton } from "antd";
+
+interface IButton {
+  label: string;
   type:
-    | 'text'
-    | 'link'
-    | 'ghost'
-    | 'default'
-    | 'primary'
-    | 'dashed'
+    | "text"
+    | "link"
+    | "ghost"
+    | "default"
+    | "primary"
+    | "dashed"
     | undefined;
-  htmlType: 'button' | 'submit' | 'reset' | undefined;
+  htmlType: "button" | "submit" | "reset" | undefined;
   onChange: ((event: React.FormEvent<any>) => void) | undefined;
-}) => {
+}
+
+const Button: React.FC<IButton> = ({ label, type, onChange, htmlType }) => {
   return (
     <div>
-      <Button block type={type} htmlType={htmlType} onChange={onChange}>
-        {btnName}
-      </Button>
+      <AntButton block type={type} htmlType={htmlType} onChange={onChange}>
+        {label}
+      </AntButton>
     </div>
   );
 };
 
-export default ButtonComponent;
+export default Button;
