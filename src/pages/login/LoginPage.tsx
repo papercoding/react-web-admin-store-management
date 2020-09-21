@@ -6,6 +6,8 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import Button from '../../components/Button/Button';
 import { ROUTES } from '../../utils/constants';
+import Logo from '../../assets/images/logo3.png';
+import Logo1 from '../../assets/images/logo.png';
 
 import './LoginPage.scss';
 
@@ -42,9 +44,13 @@ const LoginPage = () => {
 
   return (
     <div>
+      <div className='Logo'>
+        <img src={Logo1} alt='Logo' className='logo logoImg' />
+        <img src={Logo} alt='Logo' className='logo logoBrand' />
+      </div>
       <Form
         name='normal_login'
-        className='login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto mt-20'
+        className='login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto'
         initialValues={{
           remember: true,
         }}
@@ -95,7 +101,7 @@ const LoginPage = () => {
         <Form.Item>
           <div className='btnLogin'>
             <Button
-              label='Signin'
+              label='Sign in'
               htmlType='submit'
               type='default' // what does type do here ???
               onChange={handleChange}
