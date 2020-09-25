@@ -50,12 +50,18 @@
                 justify-content: space-around;
 
                 .site-icons {
-                    width: 100px;
+                    width: 150px;
+
                     display: flex;
                     justify-content: space-around;
 
                     .site-icons_style svg {
                         font-size: 20px;
+                    }
+
+                    &::after {
+                        content: '';
+                        border-right: 1px solid $gray;
                     }
                 }
 
