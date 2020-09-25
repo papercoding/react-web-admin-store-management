@@ -11,8 +11,11 @@ import {
   MailOutlined,
 } from '@ant-design/icons';
 
+import LogoAdmin from '../../assets/images/adidas-logo.png';
+
 import 'antd/dist/antd.css';
 import './AdminPage.scss';
+import { Link } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -33,6 +36,13 @@ const AdminPage = () => {
         onCollapse={toggleCollapsed}
         className='sidebar'
       >
+        <div className='logo'>
+          <Link to='/'>
+            <img alt='logo-admin' src={LogoAdmin} className='logo-admin' />
+          </Link>
+        </div>
+
+        <div className='line-bar'></div>
         <Menu
           defaultSelectedKeys={['1']}
           mode='inline'

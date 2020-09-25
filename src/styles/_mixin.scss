@@ -9,5 +9,13 @@
 }
 
 @mixin background-theme {
+    background-color: $blue-1 !important;
+}
+
+@mixin background-theme-1 {
     background-color: $blue;
+}
+
+@mixin background-theme-2 {
+    background-color: $black-opacity;
 }

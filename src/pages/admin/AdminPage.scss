@@ -5,34 +5,38 @@
     min-height: 100vh;
 
     .sidebar {
-        @include background-theme();
         overflow: auto;
+        background-image:
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(48, 48, 48, 0.5)),
+            url('../../assets/images/sneaker.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        .line-bar {
+            width: 85%;
+            margin: auto;
+            height: 1px;
+            background-color: $white-2;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            height: 64px;
+            background: transparent;
+
+            .logo-admin {
+                height: 90%;
+                width: 100px;
+                padding-top: 8px;
+                margin: auto;
+            }
+        }
 
         .sidebar-menu {
-            @include background-theme();
-            color: $white;
-            border-right: 1px solid $blue;
-
-            .admin {
-                height: 64px;
-                margin-top: 0;
-                font-size: 20px;
-                font-weight: bold;
-                position: relative;
-
-                .title-admin {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                }
-
-                .anticon-pie-chart {
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                }
-            }
+            background: transparent;
+            color: $gray;
+            border-right: none;
         }
     }
 
@@ -41,7 +45,6 @@
             background-color: $white;
             display: flex;
             justify-content: space-between;
-
 
             .site-layout-right {
                 width: 300px;
@@ -89,7 +92,7 @@
                     }
 
                     .ant-input-search-button {
-                        @include background-theme();
+                        @include background-theme-1();
                         border-radius: 0 3px 3px 0;
                         width: 40px;
                         height: 40px;
@@ -126,11 +129,10 @@
 /* FIX LAYOUT ANT DESIGN*/
 
 .ant-layout-sider-trigger {
-    @include background-theme();
+    background-color: $black-opacity;
 }
 
 .ant-menu-submenu-arrow {
-
     &::after {
         background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.85)), to(rgba(255, 255, 255, 0.85))) !important;
     }
@@ -141,5 +143,34 @@
 }
 
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: $white !important;
+    @include background-theme();
+    color: $white !important;
+    font-weight: bolder;
+}
+
+.ant-menu-submenu>.ant-menu {
+    @include background-theme-2();
+    color: $gray !important;
+}
+
+.ant-menu-item-active {
+    &:hover {
+        color: $white !important;
+    }
+}
+
+.ant-menu-submenu-selected {
+    color: $gray !important;
+}
+
+.ant-menu-submenu-active {
+    .ant-menu-submenu-title {
+        &:hover {
+            color: $white !important;
+        }
+    }
+
+    &:hover {
+        color: $white !important;
+    }
 }
