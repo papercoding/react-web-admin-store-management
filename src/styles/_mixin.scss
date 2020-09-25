@@ -1,7 +1,13 @@
+@import './_variables';
+
 @mixin normal-font-style {
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
     font-family: "Montserrat", sans-serif;
+}
+
+@mixin background-theme {
+    background-color: $blue;
 }

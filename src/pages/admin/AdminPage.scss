@@ -1,0 +1,140 @@
+@import '../../styles/_mixin';
+@import '../../styles/_variables';
+
+.layout-page {
+    min-height: 100vh;
+
+    .sidebar {
+        @include background-theme();
+        overflow: auto;
+        border-right: 1px solid $blue;
+
+        .sidebar-menu {
+            @include background-theme();
+            color: $white;
+            margin-left: 1px;
+
+            .admin {
+                height: 64px;
+                margin-top: 0;
+                font-size: 20px;
+                font-weight: bold;
+                position: relative;
+
+                .title-admin {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                .anticon-pie-chart {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+
+    .site-layout {
+        .site-layout-background {
+            background-color: $white;
+            display: flex;
+            justify-content: space-between;
+
+
+            .site-layout-right {
+                width: 300px;
+                margin-top: 4px;
+                display: flex;
+                justify-content: space-around;
+
+                .site-icons {
+                    width: 100px;
+                    display: flex;
+                    justify-content: space-around;
+
+                    .site-icons_style svg {
+                        font-size: 20px;
+                    }
+                }
+
+                .avatar-item {
+                    width: 100px;
+                    display: flex;
+                    justify-content: space-around;
+
+                    .avatar-icon {
+                        margin-top: 16px;
+                    }
+                }
+            }
+
+
+            .site-layout-left {
+                margin-top: 12px;
+                width: 400px;
+
+                .input-search {
+                    .ant-input {
+                        height: 40px;
+                        background-color: $white-1;
+                        border: none;
+                    }
+
+                    .ant-input-search-button {
+                        @include background-theme();
+                        border-radius: 0 3px 3px 0;
+                        width: 40px;
+                        height: 40px;
+                        position: relative;
+
+                        // fix bug svg position
+                        .anticon-search {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+
+                            transform: translate(-50%, -50%);
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .site-content {
+            margin: 0 16px;
+            overflow: initial;
+        }
+    }
+
+    .footer {
+        text-align: center;
+    }
+}
+
+
+/* FIX LAYOUT ANT DESIGN*/
+
+.ant-layout-sider-trigger {
+    @include background-theme();
+}
+
+.ant-menu-submenu-arrow {
+
+    &::after {
+        background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.85)), to(rgba(255, 255, 255, 0.85))) !important;
+    }
+
+    &::before {
+        background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.85)), to(rgba(255, 255, 255, 0.85))) !important;
+    }
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: $white !important;
+}

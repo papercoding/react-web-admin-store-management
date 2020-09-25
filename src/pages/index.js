@@ -1,5 +1,3 @@
-import AdminPage from './admin/AdminPage';
-
 export * from './admin/AdminPage';
 export * from './error/ErrorPage';
 export * from './forgotPassword/ForgotPassword';
