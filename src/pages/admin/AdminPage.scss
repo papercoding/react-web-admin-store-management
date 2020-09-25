@@ -7,12 +7,11 @@
     .sidebar {
         @include background-theme();
         overflow: auto;
-        border-right: 1px solid $blue;
 
         .sidebar-menu {
             @include background-theme();
             color: $white;
-            margin-left: 1px;
+            border-right: 1px solid $blue;
 
             .admin {
                 height: 64px;
