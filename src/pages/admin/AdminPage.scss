@@ -89,6 +89,7 @@
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
+
                     .ant-input {
                         box-shadow: none;
                         height: 40px;
@@ -178,4 +179,10 @@
     &:hover {
         color: $white !important;
     }
+}
+
+// fix bug Menu.Item's width longer than Sider's width
+.ant-menu-inline .ant-menu-item,
+.ant-menu-inline .ant-menu-submenu-title {
+    width: calc(100%);
 }
