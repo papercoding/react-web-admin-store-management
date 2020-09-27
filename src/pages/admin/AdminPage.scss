@@ -90,6 +90,7 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                     .ant-input {
+                        box-shadow: none;
                         height: 40px;
                         background-color: $white-1;
                         border: none;
