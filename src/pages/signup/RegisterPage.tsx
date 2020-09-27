@@ -4,4 +4,4 @@ const RegisterPage = () => {
   return <div>SignupPage</div>;
 };
 
-export { RegisterPage };
+export default RegisterPage;

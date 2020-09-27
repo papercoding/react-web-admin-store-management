@@ -35,6 +35,7 @@ const AdminPage = () => {
         collapsed={collapsed}
         onCollapse={toggleCollapsed}
         className='sidebar'
+        width='250'
       >
         <div className='logo'>
           <Link to='/'>
@@ -67,7 +68,7 @@ const AdminPage = () => {
         </Menu>
       </Sider>
       <Layout className='site-layout'>
-        <Header className='site-layout-background'>
+        <Header className='header-layout'>
           <div className='site-layout-left'>
             <Search
               placeholder='Search for...'
@@ -105,4 +106,4 @@ const AdminPage = () => {
   );
 };
 
-export { AdminPage };
+export default AdminPage;

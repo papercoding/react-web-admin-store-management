@@ -4,4 +4,4 @@ const ForgotPassword = () => {
   return <div>ForgotPassword</div>;
 };
 
-export { ForgotPassword };
+export default ForgotPassword;
