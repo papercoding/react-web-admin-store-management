@@ -71,7 +71,6 @@ const AdminPage = () => {
           <div className='site-layout-left'>
             <Search
               placeholder='Search for...'
-              onSearch={(value) => console.log(value)}
               enterButton
               className='input-search'
             />
