@@ -1,6 +1,6 @@
 import React from "react";
-
-import { Layout, Menu } from "antd";
+import { NavLink } from "react-router-dom";
+import { Layout, Menu, Row, Typography } from "antd";
 import {
   DashboardOutlined,
   ContainerOutlined,
@@ -9,13 +9,14 @@ import {
 
 import { MenuItem } from "../../utils/types";
 import "./SideBar.scss";
-import { NavLink } from "react-router-dom";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 interface ISideBar {
   menuItem: MenuItem[];
+  sidebarTitle?: string;
+  sidebarLogo?: string;
 }
 
 const getMenuIconByTitle = (title: string) => {
@@ -29,11 +30,22 @@ const getMenuIconByTitle = (title: string) => {
   }
 };
 
-const SideBar: React.FC<ISideBar> = ({ menuItem }) => {
+const SideBar: React.FC<ISideBar> = ({
+  sidebarTitle,
+  sidebarLogo,
+  menuItem,
+}) => {
   return (
     <Sider width="258px" theme="dark" collapsible>
       <div className="side-bar-logo">
-        <NavLink to="/"></NavLink>
+        <NavLink to="/">
+          <Row className="logo-container" align="middle" justify="center">
+            <img width="32" src={sidebarLogo} alt="Sidebar Logo" />
+            <Typography.Title className="logo-title" level={4}>
+              {sidebarTitle}
+            </Typography.Title>
+          </Row>
+        </NavLink>
       </div>
       <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
         {menuItem.map((item, index) => {

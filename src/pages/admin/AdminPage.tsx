@@ -1,10 +1,11 @@
 import React from "react";
-
+import { useTranslation } from "react-i18next";
 import { Layout } from "antd";
 
 import MainLayout from "../../components/MainLayout/MainLayout";
 import SideBar from "../../components/SideBar/SideBar";
 import { MenuItem } from "../../utils/types";
+import AppLogo from "../../assets/images/logoplaceholder.svg";
 
 const MOCKUP_MENU: MenuItem[] = [
   {
@@ -37,9 +38,14 @@ const MOCKUP_MENU: MenuItem[] = [
 ];
 
 const AdminPage = () => {
+  const { t } = useTranslation();
   return (
     <Layout className="admin-layout" style={{ minHeight: "100vh" }}>
-      <SideBar menuItem={MOCKUP_MENU} />
+      <SideBar
+        sidebarLogo={AppLogo}
+        sidebarTitle={t("APP_NAME")}
+        menuItem={MOCKUP_MENU}
+      />
       <MainLayout />
     </Layout>
   );
