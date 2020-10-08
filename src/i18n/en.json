@@ -2,5 +2,8 @@
   "APP_NAME": "Sneaker Store",
   "INPUT_USER_NAME_PH": "Username",
   "INPUT_PASSWORD_PH": "Password",
-  "LOGIN": "Login"
+  "LOGIN": "Login",
+  "CHECKBOX_LABEL_REMEMBER_ME": "Remember me",
+  "LOGIN_SUCCESS_MSG": "Login Success",
+  "LOGIN_FAIL_MSG": "Login Failed"
 }
