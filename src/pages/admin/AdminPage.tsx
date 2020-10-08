@@ -1,4 +1,5 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Layout } from "antd";
 
@@ -6,6 +7,7 @@ import MainLayout from "../../components/MainLayout/MainLayout";
 import SideBar from "../../components/SideBar/SideBar";
 import { MenuItem } from "../../utils/types";
 import AppLogo from "../../assets/images/logoplaceholder.svg";
+import { ROUTES } from "../../utils/constants";
 
 const MOCKUP_MENU: MenuItem[] = [
   {
@@ -37,6 +39,19 @@ const MOCKUP_MENU: MenuItem[] = [
   },
 ];
 
+const getComponentByPath = (path: string) => {
+  switch (path) {
+    case ROUTES.PRODUCT_MANAGEMENT:
+      return <div>Product Management</div>;
+    case ROUTES.BRANDING_MANAGEMENT:
+      return <div>Branding Management</div>;
+    case ROUTES.CAMPAIGN_MANAGEMENT:
+      return <div>Campaign Management</div>;
+    default:
+      return <div>Dash Board</div>;
+  }
+};
+
 const AdminPage = () => {
   const { t } = useTranslation();
   return (
@@ -46,7 +61,31 @@ const AdminPage = () => {
         sidebarTitle={t("APP_NAME")}
         menuItem={MOCKUP_MENU}
       />
-      <MainLayout />
+      <MainLayout>
+        <Switch>
+          {MOCKUP_MENU.map((item) => {
+            if (!item.subItem) {
+              return (
+                <Route
+                  exact
+                  path={item.path}
+                  component={() => getComponentByPath(item.path)}
+                />
+              );
+            } else {
+              return item.subItem.map((subItem) => {
+                return (
+                  <Route
+                    exact
+                    path={subItem.path}
+                    component={() => getComponentByPath(subItem.path)}
+                  />
+                );
+              });
+            }
+          }).flat()}
+        </Switch>
+      </MainLayout>
     </Layout>
   );
 };

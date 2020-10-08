@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Layout, Menu, Row, Typography } from "antd";
 import {
   DashboardOutlined,
@@ -35,6 +35,7 @@ const SideBar: React.FC<ISideBar> = ({
   sidebarLogo,
   menuItem,
 }) => {
+  const location = useLocation();
   return (
     <Sider width="258px" theme="dark" collapsible>
       <div className="side-bar-logo">
@@ -47,14 +48,16 @@ const SideBar: React.FC<ISideBar> = ({
           </Row>
         </NavLink>
       </div>
-      <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+      <Menu
+        theme="dark"
+        defaultSelectedKeys={["/"]}
+        selectedKeys={[location.pathname]}
+        mode="inline"
+      >
         {menuItem.map((item, index) => {
           if (!item.subItem) {
             return (
-              <Menu.Item
-                key={`${item.title}-${index}`}
-                icon={getMenuIconByTitle(item.title)}
-              >
+              <Menu.Item key={item.path} icon={getMenuIconByTitle(item.title)}>
                 <NavLink to={item.path}>{item.title}</NavLink>
               </Menu.Item>
             );
@@ -67,7 +70,7 @@ const SideBar: React.FC<ISideBar> = ({
               >
                 {item.subItem.map((subItem, index) => {
                   return (
-                    <Menu.Item key={`${subItem.title}-${index}`}>
+                    <Menu.Item key={subItem.path}>
                       <NavLink to={subItem.path}>{subItem.title}</NavLink>
                     </Menu.Item>
                   );

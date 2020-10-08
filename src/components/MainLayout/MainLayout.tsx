@@ -1,6 +1,6 @@
 import React from "react";
-
-import { Layout, Breadcrumb, Row, Avatar, Tabs, Space, Button } from "antd";
+import Text from "antd/lib/typography/Text";
+import { Layout, Row, Avatar, Tabs, Space, Button } from "antd";
 import {
   UserOutlined,
   BellOutlined,
@@ -10,12 +10,11 @@ import {
 
 import PopoverButton from "../PopoverButton/PopoverButton";
 import "./MainLayout.scss";
-import Text from "antd/lib/typography/Text";
 
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
 
-const MainLayout = () => {
+const MainLayout: React.FC<any> = ({ children }) => {
   return (
     <Layout className="site-layout">
       <Header className="site-layout-background">
@@ -67,18 +66,7 @@ const MainLayout = () => {
           </Space>
         </Row>
       </Header>
-      <Content style={{ margin: "0 16px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>User</Breadcrumb.Item>
-          <Breadcrumb.Item>Bill</Breadcrumb.Item>
-        </Breadcrumb>
-        <div
-          className="site-layout-background"
-          style={{ padding: 24, minHeight: 360 }}
-        >
-          Bill is a cat.
-        </div>
-      </Content>
+      <Content style={{ margin: "0 16px" }}>{children}</Content>
       <Footer style={{ textAlign: "center" }}>
         Ant Design ©2018 Created by Ant UED
       </Footer>
