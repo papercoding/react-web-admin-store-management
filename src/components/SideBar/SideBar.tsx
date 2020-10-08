@@ -1,50 +1,69 @@
 import React from "react";
 
-import SneakerLogo from "../../assets/images/sneakers.svg";
-import { Layout, Menu, Row, Space, Typography } from "antd";
+import { Layout, Menu } from "antd";
 import {
-  UserOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  TeamOutlined,
+  DashboardOutlined,
+  ContainerOutlined,
+  CalendarOutlined,
 } from "@ant-design/icons";
+
+import { MenuItem } from "../../utils/types";
 import "./SideBar.scss";
+import { NavLink } from "react-router-dom";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-const SideBar = () => {
+interface ISideBar {
+  menuItem: MenuItem[];
+}
+
+const getMenuIconByTitle = (title: string) => {
+  switch (title) {
+    case "Dashboard":
+      return <DashboardOutlined />;
+    case "Inventory Management":
+      return <ContainerOutlined />;
+    case "Campaign Management":
+      return <CalendarOutlined />;
+  }
+};
+
+const SideBar: React.FC<ISideBar> = ({ menuItem }) => {
   return (
-    <Sider className="my-sider" collapsible>
-      <Row align="middle" justify="center">
-        <Space>
-          <img style={{ width: "64px" }} src={SneakerLogo} alt="App Logo" />
-          <Typography.Text style={{ color: "white" }}>
-            {"SNEAKER"}
-          </Typography.Text>
-        </Space>
-      </Row>
-      <Menu
-        style={{ background: "transparent" }}
-        theme="dark"
-        defaultSelectedKeys={["1"]}
-        mode="inline"
-      >
-        <Menu.Item key="1" icon={<PieChartOutlined />}>
-          Option 1
-        </Menu.Item>
-        <Menu.Item key="2" icon={<DesktopOutlined />}>
-          Option 2
-        </Menu.Item>
-        <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-          <Menu.Item key="3">Tom</Menu.Item>
-          <Menu.Item key="4">Bill</Menu.Item>
-          <Menu.Item key="5">Alex</Menu.Item>
-        </SubMenu>
-        <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-          <Menu.Item key="6">Team 1</Menu.Item>
-          <Menu.Item key="8">Team 2</Menu.Item>
-        </SubMenu>
+    <Sider width="258px" theme="dark" collapsible>
+      <div className="side-bar-logo">
+        <NavLink to="/"></NavLink>
+      </div>
+      <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+        {menuItem.map((item, index) => {
+          if (!item.subItem) {
+            return (
+              <Menu.Item
+                key={`${item.title}-${index}`}
+                icon={getMenuIconByTitle(item.title)}
+              >
+                <NavLink to={item.path}>{item.title}</NavLink>
+              </Menu.Item>
+            );
+          } else {
+            return (
+              <SubMenu
+                key={`${item.title}-${index}`}
+                icon={getMenuIconByTitle(item.title)}
+                title={item.title}
+              >
+                {item.subItem.map((subItem, index) => {
+                  return (
+                    <Menu.Item key={`${subItem.title}-${index}`}>
+                      <NavLink to={subItem.path}>{subItem.title}</NavLink>
+                    </Menu.Item>
+                  );
+                })}
+              </SubMenu>
+            );
+          }
+        })}
       </Menu>
     </Sider>
   );
