@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+
+#normal_login {
+    margin-top: 200px;
+}
+
+.Logo {
+    width: 400px;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .logo {
+        width: 100px;
+    }
+}
+
+.login-form {
+    max-width: 400px;
+
+    .ant-form-item-control-input-content .inputField {
+        border-bottom: 1px solid $gray;
+    }
+
+    .btnLogin Button {
+        background-color: $blue;
+        height: 50px;
+        font-weight: bold;
+        border-radius: 5px;
+        color: $white;
+    }
+
+    .login-form-forgot {
+        color: $blue;
+        float: right;
+    }
+
+    // fix position error text
+    .ant-form-item-explain div {
+        position: absolute;
+        top: 34px;
+    }
+}
+
+.signupLink {
+    color: $blue;
+}
