@@ -1,3 +1,6 @@
 {
-  "APP_NAME": "Sneaker Store"
+  "APP_NAME": "Sneaker Store",
+  "INPUT_USER_NAME_PH": "Username",
+  "INPUT_PASSWORD_PH": "Password",
+  "LOGIN": "Login"
 }

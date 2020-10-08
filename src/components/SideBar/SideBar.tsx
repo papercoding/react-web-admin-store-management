@@ -9,6 +9,7 @@ import {
 
 import { MenuItem } from "../../utils/types";
 import "./SideBar.scss";
+import AppBrand from "../AppBrand/AppBrand";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -46,14 +47,7 @@ const SideBar: React.FC<ISideBar> = ({
     <Sider onCollapse={handleOnCollapse} width="258px" theme="dark" collapsible>
       <div className="side-bar-logo">
         <NavLink to="/">
-          <Row className="logo-container" align="middle" justify="center">
-            <img width="32" src={sidebarLogo} alt="Sidebar Logo" />
-            {!isCollapsed && (
-              <Typography.Title className="logo-title" level={4}>
-                {sidebarTitle}
-              </Typography.Title>
-            )}
-          </Row>
+          <AppBrand isShownAppName={!isCollapsed} />
         </NavLink>
       </div>
       <Menu
