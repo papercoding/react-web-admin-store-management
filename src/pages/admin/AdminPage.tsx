@@ -1,107 +1,91 @@
-import React, { useState } from 'react';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Layout } from "antd";
 
-import { Layout, Menu, Input, Avatar, Badge } from 'antd';
-import {
-  UserOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  FileOutlined,
-  TeamOutlined,
-  BellOutlined,
-  MailOutlined,
-} from '@ant-design/icons';
+import MainLayout from "../../components/MainLayout/MainLayout";
+import SideBar from "../../components/SideBar/SideBar";
+import { MenuItem } from "../../utils/types";
+import AppLogo from "../../assets/images/logoplaceholder.svg";
+import { ROUTES } from "../../utils/constants";
 
-import LogoAdmin from '../../assets/images/adidas-logo.png';
+const MOCKUP_MENU: MenuItem[] = [
+  {
+    id: "db001",
+    title: "Dashboard",
+    path: "/",
+  },
+  {
+    id: "ivt002",
+    title: "Inventory Management",
+    path: "",
+    subItem: [
+      {
+        id: "pdm001",
+        title: "Product Management",
+        path: "/product-management",
+      },
+      {
+        id: "bdm002",
+        title: "Branding Management",
+        path: "/branding-management",
+      },
+    ],
+  },
+  {
+    id: "cp003",
+    title: "Campaign Management",
+    path: "/campaign-management",
+  },
+];
 
-import 'antd/dist/antd.css';
-import './AdminPage.scss';
-import { Link } from 'react-router-dom';
-
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
-const { Search } = Input;
+const getComponentByPath = (path: string) => {
+  switch (path) {
+    case ROUTES.PRODUCT_MANAGEMENT:
+      return <div>Product Management</div>;
+    case ROUTES.BRANDING_MANAGEMENT:
+      return <div>Branding Management</div>;
+    case ROUTES.CAMPAIGN_MANAGEMENT:
+      return <div>Campaign Management</div>;
+    default:
+      return <div>Dash Board</div>;
+  }
+};
 
 const AdminPage = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
-
+  const { t } = useTranslation();
   return (
-    <Layout className='layout-page'>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={toggleCollapsed}
-        className='sidebar'
-        width='250'
-      >
-        <div className='logo'>
-          <Link to='/'>
-            <img alt='logo-admin' src={LogoAdmin} className='logo-admin' />
-          </Link>
-        </div>
-
-        <div className='line-bar'></div>
-        <Menu
-          defaultSelectedKeys={['1']}
-          mode='inline'
-          className='sidebar-menu'
-        >
-          <Menu.Item key='1' icon={<PieChartOutlined />} className='admin'>
-            <span className='title-admin'>Dashboard</span>
-          </Menu.Item>
-          <Menu.Item key='2' icon={<DesktopOutlined />}>
-            Option 2
-          </Menu.Item>
-          <SubMenu key='sub1' icon={<UserOutlined />} title='User'>
-            <Menu.Item key='3'>Tom</Menu.Item>
-            <Menu.Item key='4'>Bill</Menu.Item>
-            <Menu.Item key='5'>Alex</Menu.Item>
-          </SubMenu>
-          <SubMenu key='sub2' icon={<TeamOutlined />} title='Team'>
-            <Menu.Item key='6'>Team 1</Menu.Item>
-            <Menu.Item key='8'>Team 2</Menu.Item>
-          </SubMenu>
-          <Menu.Item key='9' icon={<FileOutlined />} />
-        </Menu>
-      </Sider>
-      <Layout className='site-layout'>
-        <Header className='header-layout'>
-          <div className='site-layout-left'>
-            <Search
-              placeholder='Search for...'
-              enterButton
-              className='input-search'
-            />
-          </div>
-          <div className='site-layout-right'>
-            <div className='site-icons'>
-              <span>
-                <Badge count={1}>
-                  <BellOutlined className='site-icons_style' />
-                </Badge>
-              </span>
-              <span>
-                <Badge count={1}>
-                  <MailOutlined className='site-icons_style' />
-                </Badge>
-              </span>
-            </div>
-            <span className='avatar-item'>
-              <p className='avatar-name'>Mr.Trung</p>
-              <Badge count={1} className='avatar-icon'>
-                <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
-              </Badge>
-            </span>
-          </div>
-        </Header>
-        <Content className='site-content'>
-          <div style={{ padding: 24, minHeight: 360 }}>Bill is a cat.</div>
-        </Content>
-        <Footer className='footer'>Ant Design ©2018 Created by Ant UED</Footer>
-      </Layout>
+    <Layout className="admin-layout" style={{ minHeight: "100vh" }}>
+      <SideBar
+        sidebarLogo={AppLogo}
+        sidebarTitle={t("APP_NAME")}
+        menuItem={MOCKUP_MENU}
+      />
+      <MainLayout>
+        <Switch>
+          {MOCKUP_MENU.map((item) => {
+            if (!item.subItem) {
+              return (
+                <Route
+                  exact
+                  path={item.path}
+                  component={() => getComponentByPath(item.path)}
+                />
+              );
+            } else {
+              return item.subItem.map((subItem) => {
+                return (
+                  <Route
+                    exact
+                    path={subItem.path}
+                    component={() => getComponentByPath(subItem.path)}
+                  />
+                );
+              });
+            }
+          }).flat()}
+        </Switch>
+      </MainLayout>
     </Layout>
   );
 };
