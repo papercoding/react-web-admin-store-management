@@ -1,124 +1,92 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { Form, Input, Typography } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useTranslation } from "react-i18next";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Checkbox, Form, Input, Button, Row, Col, message } from "antd";
 
-import Button from '../../components/Button/Button';
-import { ROUTES } from '../../utils/constants';
-import Logo from '../../assets/images/logo3.png';
-import Logo1 from '../../assets/images/logo.png';
-
-import './LoginPage.scss';
-
-type FieldStates = {
-  email: string;
-  password: string;
-};
+import { login } from "../../services/users/users";
+import AppBrand from "../../components/AppBrand/AppBrand";
+import "./LoginPage.scss";
+import { updateToken } from "../../features/AppConfigs/AppConfigsSlice";
 
 const LoginPage = () => {
-  const { Title } = Typography;
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (e.preventDefault) e.preventDefault();
-    const { email, password } = fields;
+  const { t } = useTranslation();
+  const [isLoading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-    console.log(`Email: ${email} and password: ${password}`);
+  const handleOnFinish = async (values: any) => {
+    setLoading(true);
+    try {
+      const { username, password } = values;
+      await login(username, password);
+      message.success(t("LOGIN_SUCCESS_MSG"));
+      dispatch(updateToken("fake_token"));
+    } catch {
+      message.error(t("LOGIN_FAIL_MSG"));
+    } finally {
+      setLoading(false);
+    }
   };
-
-  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const email = event.currentTarget.value;
-    setFields((prevState) => ({ ...prevState, email }));
-  };
-
-  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const password = event.currentTarget.value;
-    setFields((prevState) => ({ ...prevState, password }));
-  };
-
-  const handleChange = () => {};
-
-  const [fields, setFields] = useState<FieldStates>({
-    email: '',
-    password: '',
-  });
 
   return (
-    <div>
-      <div className='Logo'>
-        <img src={Logo1} alt='Logo' className='logo logoImg' />
-        <img src={Logo} alt='Logo' className='logo logoBrand' />
-      </div>
-      <Form
-        name='normal_login'
-        className='login-form bg-white shadow-md rounded px-10 pt-10 pb-20 m-auto'
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={handleSubmit}
+    <Row className="login-content" justify="center" align="middle">
+      <Col
+        xs={{ span: 18 }}
+        md={{ span: 8 }}
+        xl={{ span: 6 }}
+        xxl={{ span: 4 }}
       >
-        <Title level={2}>Sign in</Title>
-        <Form.Item
-          name='username'
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Email!',
-            },
-          ]}
+        <AppBrand
+          appNameStyle={{ color: "black" }}
+          appNameLevel={2}
+          logoWidth="48px"
+        />
+        <Form
+          className="login-form"
+          name="basic"
+          initialValues={{ remember: true }}
+          onFinish={handleOnFinish}
         >
-          <Input
-            prefix={<UserOutlined className='site-form-item-icon' />}
-            placeholder='Email'
-            bordered={false}
-            className='inputField emailInput'
-            onChange={handleChangeEmail}
-          />
-        </Form.Item>
-        <Form.Item
-          name='password'
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Password!',
-            },
-          ]}
-        >
-          <Input
-            prefix={<LockOutlined className='site-form-item-icon' />}
-            type='password'
-            placeholder='Password'
-            bordered={false}
-            className='inputField passwordInput'
-            onChange={handleChangePassword}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Title level={5} className='login-form-forgot'>
-            <Link to={ROUTES.FORGOT_PASSWORD}>Forgot password</Link>
-          </Title>
-        </Form.Item>
-
-        <Form.Item>
-          <div className='btnLogin'>
-            <Button
-              label='Sign in'
-              htmlType='submit'
-              type='default' // what does type do here ???
-              onChange={handleChange}
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
+            <Input
+              size="large"
+              placeholder={t("INPUT_USER_NAME_PH")}
+              prefix={<UserOutlined />}
+              disabled={isLoading}
             />
-          </div>
-        </Form.Item>
-      </Form>
-      <div className='mt-5'>
-        <Title level={5} type='secondary'>
-          Not a member
-        </Title>
-
-        <Title level={5} className='signupLink'>
-          <Link to={ROUTES.SIGN_UP}>Sign up</Link>
-        </Title>
-      </div>
-    </div>
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password
+              size="large"
+              placeholder={t("INPUT_PASSWORD_PH")}
+              prefix={<LockOutlined />}
+              disabled={isLoading}
+            />
+          </Form.Item>
+          <Form.Item name="remember" valuePropName="checked">
+            <Checkbox>{t("CHECKBOX_LABEL_REMEMBER_ME")}</Checkbox>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              loading={isLoading}
+              type="primary"
+              htmlType="submit"
+              block
+              size="large"
+            >
+              {t("LOGIN")}
+            </Button>
+          </Form.Item>
+        </Form>
+      </Col>
+    </Row>
   );
 };
 
