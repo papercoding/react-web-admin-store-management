@@ -11,7 +11,6 @@ const appConfigsSlice = createSlice({
   },
   reducers: {
     updateToken: (state, action) => {
-      localStorage.setItem("token", action.payload);
       state.token = action.payload;
     },
   },

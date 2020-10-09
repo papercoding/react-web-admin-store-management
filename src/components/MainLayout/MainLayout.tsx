@@ -14,7 +14,11 @@ import "./MainLayout.scss";
 const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
 
-const MainLayout: React.FC<any> = ({ children }) => {
+interface IMainLayout {
+  onSignOutClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+}
+
+const MainLayout: React.FC<IMainLayout> = ({ onSignOutClick, children }) => {
   return (
     <Layout className="site-layout">
       <Header className="site-layout-background">
@@ -51,7 +55,11 @@ const MainLayout: React.FC<any> = ({ children }) => {
                     Settings
                   </Button>
                   <br />
-                  <Button icon={<LogoutOutlined />} type="text">
+                  <Button
+                    icon={<LogoutOutlined />}
+                    type="text"
+                    onClick={onSignOutClick}
+                  >
                     Sign Out
                   </Button>
                   <br />

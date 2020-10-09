@@ -18,10 +18,13 @@ const LoginPage = () => {
   const handleOnFinish = async (values: any) => {
     setLoading(true);
     try {
-      const { username, password } = values;
+      const { username, password, remember } = values;
       await login(username, password);
       message.success(t("LOGIN_SUCCESS_MSG"));
       dispatch(updateToken("fake_token"));
+      if (remember) {
+        localStorage.setItem("token", "fake_token");
+      }
     } catch {
       message.error(t("LOGIN_FAIL_MSG"));
     } finally {
