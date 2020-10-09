@@ -1,0 +1,11 @@
+.content-header-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 16px;
+    margin: 0 -16px;
+    border-top: 1px solid gainsboro;
+    background-color: white;
+    .title {
+        margin: 0;
+    }
+}
